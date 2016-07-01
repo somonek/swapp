@@ -12,6 +12,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
     "gulp-ejs-template": "^0.2.0",
+    "gulp-include": "^2.3.0",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",

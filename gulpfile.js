@@ -6,6 +6,7 @@ var gulp = require("gulp"),
     rename = require("gulp-rename"),
     browserSync = require("browser-sync"),
     autoprefixer = require("gulp-autoprefixer"),
+    include = require("gulp-include"),
     reload = browserSync.reload,
     config = {
         bowerComponentsDir: "./bower_components",
@@ -22,7 +23,8 @@ gulp.task("scripts", function () {
         config.bowerComponentsDir + '/backbone/backbone.js',
         config.bowerComponentsDir + '/backbone.marionette/lib/backbone.marionette.js',
         config.bowerComponentsDir + '/ejs/ejs.js',
-        config.bowerComponentsDir + '/modulejs/dist/modulejs.js'
+        config.bowerComponentsDir + '/modulejs/dist/modulejs.js',
+        config.bowerComponentsDir + '/Materialize/bin/materialize.js'
     ])
         .pipe(plumber())
         .pipe(concat('vendors.js'))
@@ -31,8 +33,9 @@ gulp.task("scripts", function () {
         .pipe(gulp.dest("public/assets/js/"));
 
     gulp.src([
-        "src/javascripts/**/*.es6"])
+        "src/javascripts/application.es6"])
         .pipe(plumber())
+        .pipe(include(["js"]))
         .pipe(rename({
             suffix: ".min",
             extname: ".js"
