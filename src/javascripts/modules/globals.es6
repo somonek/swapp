@@ -1,5 +1,5 @@
 // define namespacing
-window.App = App = {
+var App = {
     Modules: {
         Config: {}
     }
@@ -27,7 +27,7 @@ App.Modules.Helpers = {
         slide( direction, speed = 300 ){
             var $col = this.$el();
             var width = $col.outerWidth();
-            var left1;
+            var right;
 
             switch( direction ){
                 case "in":
@@ -44,3 +44,5 @@ App.Modules.Helpers = {
         }
     }
 };
+
+window.App = App;

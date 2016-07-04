@@ -19,7 +19,8 @@ modulejs.define( "app/views/pagination",
                this.setButtonsClass();
            },
 
-           getPreviousPage(){
+           getPreviousPage( e ){
+               e.preventDefault();
                this.renderLoader();
                let prevPage = this.getPageNumberHelper( this.collection.meta.previous );
                this.collection.fetch( {reset: true, data:  $.param({ page: prevPage}) } ).done(() => {
@@ -34,7 +35,8 @@ modulejs.define( "app/views/pagination",
                this.model.set("next_class", this.getButtonClassHelper( this.collection.meta.next ));
            },
 
-           getNextPage(){
+           getNextPage( e ){
+               e.preventDefault();
                this.renderLoader();
                let nextPage = this.getPageNumberHelper( this.collection.meta.next );
                this.collection.fetch( {reset: true, data:  $.param({ page: nextPage}) } ).done(() => {
@@ -45,7 +47,7 @@ modulejs.define( "app/views/pagination",
            },
 
            getPageNumberHelper( url ){
-               // bad practice but works for this particular case
+               // bad code but works for this particular case
                return url.substr( url.length - 1 );
            },
 

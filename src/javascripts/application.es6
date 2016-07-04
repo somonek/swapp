@@ -86,8 +86,8 @@ var controller = Backbone.Marionette.Object.extend({
 });
 
 
-Swapp = new swapp();
-Controller = new controller();
+var Swapp = new swapp();
+var Controller = new controller();
 
 Swapp.addInitializer( () => {
     Controller.renderResultsLoader();

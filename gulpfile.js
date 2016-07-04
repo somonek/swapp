@@ -1,5 +1,6 @@
 var gulp = require("gulp"),
     uglify = require("gulp-uglify"),
+    babel = require('gulp-babel'),
     sass = require("gulp-sass"),
     plumber = require("gulp-plumber"),
     concat = require('gulp-concat'),
@@ -42,6 +43,9 @@ gulp.task("scripts", function () {
         "src/javascripts/application.es6"])
         .pipe(plumber())
         .pipe(include(["js"]))
+        .pipe(babel({
+            presets: ['es2015']
+        }))
         .pipe(rename({
             suffix: ".min",
             extname: ".js"
