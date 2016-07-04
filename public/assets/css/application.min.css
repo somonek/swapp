@@ -6099,7 +6099,8 @@ html, body {
       padding-top: 20px;
       padding-bottom: 20px; }
     #swapp .container #swappContent {
-      padding: 20px; }
+      padding: 20px;
+      z-index: 100; }
       @media screen and (max-width: 600px) {
         #swapp .container #swappContent {
           position: absolute;
@@ -6139,6 +6140,13 @@ html, body {
   top: 15px; }
   #filters a.clear::after {
     content: '✖'; }
+
+@media only screen and (max-width: 992px) {
+  .pagination li.prev, .pagination li.next {
+    width: auto !important; } }
+
+.pagination li {
+  padding: 0 !important; }
 
 .margin-top-20 {
   margin-top: 20px; }

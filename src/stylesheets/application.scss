@@ -27,6 +27,7 @@ html, body {
 
     #swappContent{
       padding: 20px;
+      z-index: 100;
 
       @media screen and (max-width: 600px){
         position: absolute;
@@ -89,6 +90,18 @@ html, body {
     &::after {
       content: '✖';
     }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .pagination li.prev, .pagination li.next {
+    width: auto !important;
+  }
+}
+
+.pagination{
+  li{
+    padding: 0 !important;
   }
 }
 

@@ -18,13 +18,7 @@ var controller = Backbone.Marionette.Object.extend({
 
     initialize(){
         let peopleCollection = modulejs.require("app/collections/people");
-        this.peopleCollection = new peopleCollection({
-            mode: "infinite",
-            
-            queryParams: {
-                totalPages: null,
-                totalRecords: null
-            }});
+        this.peopleCollection = new peopleCollection();
         this.bindEvents()
     },
 
@@ -43,7 +37,17 @@ var controller = Backbone.Marionette.Object.extend({
 
         this.peopleCollection.on("page:change", () => {
             _this.SearchFilterView.clearSearchBox();
-        })
+        });
+
+        this.SearchFilterView.on("results:no", ()=>{
+            this.Paginator.$el.hide();
+            this.ResultsView.$el.find('thead').hide();
+        });
+
+        this.SearchFilterView.on("results:yes", ()=>{
+            this.Paginator.$el.show();
+            this.ResultsView.$el.find('thead').show();
+        });
     },
 
     renderResultsLoader(){
@@ -54,11 +58,11 @@ var controller = Backbone.Marionette.Object.extend({
     renderResults(){
         this.peopleCollection.fetch().then( () => {
             let resultsView = modulejs.require("app/views/results");
-            let ResultsView = new resultsView({
+            this.ResultsView = new resultsView({
                 collection: this.peopleCollection,
                 emptyText: "No results found..."
             });
-            Swapp.getRegion("results").show( ResultsView );
+            Swapp.getRegion("results").show( this.ResultsView );
             this.renderPaginator();
             this.bindResultsViewEvents();
         });
@@ -73,11 +77,11 @@ var controller = Backbone.Marionette.Object.extend({
     },
 
     renderPaginator(){
-        let Paginator = new Backgrid.Extension.Paginator({
-            collection: this.peopleCollection,
-            renderIndexedPageHandles: false
+        let paginator = modulejs.require("app/views/pagination");
+        this.Paginator = new paginator({
+            collection: this.peopleCollection
         });
-        Swapp.getRegion('paginator').show( Paginator );
+        Swapp.getRegion('paginator').show( this.Paginator );
     }
 });
 
