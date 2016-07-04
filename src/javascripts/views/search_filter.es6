@@ -2,7 +2,7 @@ modulejs.define("app/views/search_filter", () => {
 
     return Backgrid.Extension.ClientSideFilter.extend({
         template: templates.get("search_filter.ejs"),
-        className: "",
+        className: "", // reset the class, no need of the default styling
 
         // after clearing the searchbox, unfocus the field as well
         clearSearchBox(){

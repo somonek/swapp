@@ -23,11 +23,16 @@ modulejs.define( "app/views/pagination",
                e.preventDefault();
                this.renderLoader();
                let prevPage = this.getPageNumberHelper( this.collection.meta.previous );
-               this.collection.fetch( {reset: true, data:  $.param({ page: prevPage}) } ).done(() => {
-                   this.collection.trigger('page:change');
-                   this.setButtonsClass();
-                   this.render();
-               });
+               this.collection
+                   .fetch({
+                       reset: true,
+                       data:  $.param({ page: prevPage})
+                   })
+                   .done(() => {
+                       this.collection.trigger('page:change');
+                       this.setButtonsClass();
+                       this.render();
+                   });
            },
 
            setButtonsClass(){
@@ -39,20 +44,27 @@ modulejs.define( "app/views/pagination",
                e.preventDefault();
                this.renderLoader();
                let nextPage = this.getPageNumberHelper( this.collection.meta.next );
-               this.collection.fetch( {reset: true, data:  $.param({ page: nextPage}) } ).done(() => {
-                   this.collection.trigger('page:change');
-                   this.setButtonsClass();
-                   this.render();
-               });
+               this.collection
+                   .fetch({
+                       reset: true,
+                       data:  $.param({ page: nextPage})
+                   })
+                   .done(() => {
+                       this.collection.trigger('page:change');
+                       this.setButtonsClass();
+                       this.render();
+                   });
            },
 
            getPageNumberHelper( url ){
-               // bad code but works for this particular case
+               // bad way, but works for this particular case
                return url.substr( url.length - 1 );
            },
 
            getButtonClassHelper( url ){
-               return _.isNull( url ) ? "disabled" : "waves-effect"
+               return _.isNull( url )
+                   ? "disabled"
+                   : "waves-effect"
            },
 
            renderLoader(){

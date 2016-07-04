@@ -21,9 +21,11 @@ App.Modules.Helpers = {
 
     ContentContainer:{
         $el: () => { return $("#swappContent") },
+
         toggle(){
             this.$el().attr("data-state") === "in" ? this.slide("out") : this.slide("in");
         },
+
         slide( direction, speed = 300 ){
             var $col = this.$el();
             var width = $col.outerWidth();

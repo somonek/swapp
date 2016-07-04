@@ -21,6 +21,7 @@ modulejs.define( "app/views/person_data",
             regions: {
                 value: ".value"
             },
+
             onShow(){
                 if( this.model.get("value") instanceof Backbone.View ){
                     this.getRegion("value").show( this.model.get("value") );
@@ -35,9 +36,11 @@ modulejs.define( "app/views/person_data",
                     <b class="teal-color"><%= name %></b>
                 `);
 
-                this.model.fetch().then(()=>{
-                    this.render();
-                });
+                this.model
+                    .fetch()
+                    .then(()=>{
+                        this.render();
+                    });
             }
         });
 

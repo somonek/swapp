@@ -6,9 +6,11 @@ modulejs.define( "app/views/homeworld_fellows", () => {
 
         initialize(){
             this.model.set("name", "loading...");
-            this.model.fetch().then(() => {
-                this.render();
-            });
+            this.model
+                .fetch()
+                .then(() => {
+                    this.render();
+                });
         }
     });
     
@@ -16,17 +18,17 @@ modulejs.define( "app/views/homeworld_fellows", () => {
         template: _.template(`
             <div class="divider margin-top-20"></div>
             <p><b>Other people from the same homeworld:</b></p>
-            <div></div>
+            <div class="fellows-cnt"></div>
         `),
         childView: rowView,
-        itemViewContainer: "div",
-        
+        itemViewContainer: ".fellows-cnt",
         events: {
             "click a.p-name": "personClick"
         },
 
         personClick( e ){
             e.preventDefault();
+            // TODO: should fetch and show the details for the clicked item
         },
 
         onShow(){

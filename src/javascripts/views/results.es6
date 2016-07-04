@@ -23,7 +23,7 @@ modulejs.define( "app/views/results",
 
             itemClick(e){
                 let $item = $(e.target);
-                window.App.Modules.Helpers.ContentContainer.slide("out")
+                window.App.Modules.Helpers.ContentContainer.slide("out");
                 this.seePersonDetails( $item );
                 this.makeItemActive( $item );
                 e.preventDefault();
@@ -37,9 +37,11 @@ modulejs.define( "app/views/results",
                 window.App.Modules.Cache.lastFetchedPersonId = itemId;
 
                 Backbone.Events.trigger( "person:data:before:fetch" );
-                Person.fetch().then( () => {
-                    Backbone.Events.trigger( "person:data:fetch", Person );
-                });
+                Person
+                    .fetch()
+                    .then(() => {
+                        Backbone.Events.trigger( "person:data:fetch", Person );
+                    });
             },
 
             makeItemActive( $item ){

@@ -12,6 +12,8 @@ var swapp = Backbone.Marionette.Application.extend({
         paginator: "#paginator"
     }
 });
+var Swapp = new swapp();
+
 
 var controller = Backbone.Marionette.Object.extend({
     loaderView: modulejs.require('app/views/loader'),
@@ -86,9 +88,7 @@ var controller = Backbone.Marionette.Object.extend({
 });
 
 
-var Swapp = new swapp();
 var Controller = new controller();
-
 Swapp.addInitializer( () => {
     Controller.renderResultsLoader();
     Controller.renderResults();
