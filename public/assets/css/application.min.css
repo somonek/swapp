@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .materialize-red {
   background-color: #e51c23 !important; }
 
@@ -6082,5 +6083,68 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .picker--time .picker__box {
     margin-bottom: 5em; } }
 
-div {
-  font-size: 15px; }
+html, body {
+  height: 100%;
+  background-color: #cfd8dc; }
+
+#swapp {
+  height: 100%; }
+  #swapp .container {
+    height: 100%; }
+    #swapp .container > .row {
+      border-radius: 3px;
+      background-color: white;
+      margin-bottom: 0 !important; }
+    #swapp .container #swappNav {
+      padding-top: 20px;
+      padding-bottom: 20px; }
+    #swapp .container #swappContent {
+      padding: 20px; }
+      @media screen and (max-width: 600px) {
+        #swapp .container #swappContent {
+          position: absolute;
+          right: -100%;
+          width: 100%;
+          background-color: white;
+          height: 100%; } }
+      #swapp .container #swappContent .close-btn {
+        font-size: 1.3em;
+        cursor: pointer; }
+        @media screen and (min-width: 601px) {
+          #swapp .container #swappContent .close-btn {
+            display: none; } }
+        #swapp .container #swappContent .close-btn:hover {
+          color: green; }
+      #swapp .container #swappContent #homeworldResidents .chip {
+        margin-right: 5px;
+        margin-bottom: 5px; }
+
+.backgrid-filter.form-search {
+  width: 100%;
+  height: auto;
+  margin: auto !important; }
+
+#filters .input-field input[type=search] {
+  padding-left: 0 !important;
+  width: 100% !important;
+  position: relative; }
+
+#filters a.clear {
+  position: absolute;
+  color: #777;
+  font: 14px/100% arial, sans-serif;
+  right: -2px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fff;
+  top: 15px; }
+  #filters a.clear::after {
+    content: '✖'; }
+
+.margin-top-20 {
+  margin-top: 20px; }
+
+.auto-width {
+  max-width: 100%; }
+
+.teal-color {
+  color: #009688; }

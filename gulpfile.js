@@ -7,6 +7,8 @@ var gulp = require("gulp"),
     browserSync = require("browser-sync"),
     autoprefixer = require("gulp-autoprefixer"),
     include = require("gulp-include"),
+    gulpEjs = require('gulp-ejs-template'),
+    concatCss = require("gulp-concat-css"),
     reload = browserSync.reload,
     config = {
         bowerComponentsDir: "./bower_components",
@@ -22,6 +24,10 @@ gulp.task("scripts", function () {
         config.bowerComponentsDir + '/underscore/underscore.js',
         config.bowerComponentsDir + '/backbone/backbone.js',
         config.bowerComponentsDir + '/backbone.marionette/lib/backbone.marionette.js',
+        config.bowerComponentsDir + '/backgrid/lib/backgrid.js',
+        config.bowerComponentsDir + '/backgrid-filter/backgrid-filter.js',
+        config.bowerComponentsDir + '/backbone.paginator/lib/backbone.paginator.js',
+        config.bowerComponentsDir + '/backgrid-paginator/backgrid-paginator.js',
         config.bowerComponentsDir + '/ejs/ejs.js',
         config.bowerComponentsDir + '/modulejs/dist/modulejs.js',
         config.bowerComponentsDir + '/Materialize/bin/materialize.js'
@@ -44,11 +50,33 @@ gulp.task("scripts", function () {
         .pipe(gulp.dest("public/assets/js/"));
 });
 
+gulp.task('templates', function () {
+    return gulp.src('./src/templates/**/*.ejs')
+        .pipe(gulpEjs({
+            moduleName: 'templates'
+        }))
+        .pipe(rename({suffix: ".min"}))
+        //.pipe(uglify())
+        .pipe(gulp.dest("public/assets/js/"))
+        .pipe(browserSync.stream());
+});
+
 
 //////////////////////////////////////////////
 ///// Styles Task
 //////////////////////////////////////////////
 gulp.task("sass", function () {
+    gulp.src(
+        [
+            config.bowerComponentsDir + '/backgrid/lib/backgrid.css',
+            config.bowerComponentsDir + '/backgrid-filter/backgrid-filter.css',
+            config.bowerComponentsDir + '/backgrid-paginator/backgrid-paginator.css'
+        ])
+        .pipe(concatCss("vendors.css"))
+        .pipe(rename({suffix: ".min"}))
+        //.pipe(uglify())
+        .pipe(gulp.dest("public/assets/css/"));
+    
     gulp.src("src/stylesheets/application.scss")
         .pipe(plumber())
         .pipe(sass().on('error', sass.logError))
@@ -85,13 +113,14 @@ gulp.task("browser-sync", function () {
 ///// Watch Task
 //////////////////////////////////////////////
 gulp.task("watch", function () {
-    gulp.watch("src/javascripts/**/*.js", ['scripts']);
+    gulp.watch("src/javascripts/**/*.es6", ['scripts']);
     gulp.watch("src/stylesheets/**/*.scss", ['sass']);
     gulp.watch("public/**/*.html", ['html']);
+    gulp.watch("./src/templates/**/*.ejs", ['templates']);
 });
 
 
 //////////////////////////////////////////////
 ///// Default Task
 //////////////////////////////////////////////
-gulp.task("default", ['scripts', 'browser-sync', 'sass', 'html', 'watch']);
+gulp.task("default", ['scripts', 'browser-sync', 'sass', 'html', 'templates', 'watch']);

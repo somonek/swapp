@@ -11,6 +11,7 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
+    "gulp-concat-css": "^2.3.0",
     "gulp-ejs-template": "^0.2.0",
     "gulp-include": "^2.3.0",
     "gulp-plumber": "^1.1.0",

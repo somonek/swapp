@@ -1,7 +1,104 @@
 @import "../../bower_components/Materialize/sass/materialize";
 
 ////////  Custom Styles
+html, body {
+  height: 100%;
+  background-color: #cfd8dc;
+}
 
-div{
-  font-size: 15px;
+#swapp{
+  height: 100%;
+
+  .container{
+    height: 100%;
+
+    > .row{
+      border-radius: 3px;
+      background-color: white;
+      //height: 100%;
+      margin-bottom: 0 !important;
+    }
+
+    #swappNav{
+      $navBlockPadding_Top_Bottom: 20px;
+      padding-top: $navBlockPadding_Top_Bottom;
+      padding-bottom: $navBlockPadding_Top_Bottom;
+    }
+
+    #swappContent{
+      padding: 20px;
+
+      @media screen and (max-width: 600px){
+        position: absolute;
+        right: -100%;
+        width: 100%;
+        background-color: white;
+        height: 100%;
+      }
+
+      .close-btn{
+        font-size: 1.3em;
+        cursor: pointer;
+
+        @media screen and (min-width: 601px){
+          display: none;
+        }
+
+        &:hover{
+          color: green;
+        }
+      }
+
+      #homeworldResidents{
+        .chip {
+          margin-right: 5px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+
+//Overriding some vendors styles
+.backgrid-filter{
+  &.form-search{
+    width: 100%;
+    height: auto;
+    margin: auto !important;
+  }
+}
+
+#filters{
+  .input-field {
+    input[type=search]{
+      padding-left: 0 !important;
+      width: 100% !important;
+      position: relative;
+    }
+  }
+
+  a.clear{
+    position: absolute;
+    color: #777;
+    font: 14px/100% arial, sans-serif;
+    right: -2px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+    top: 15px;
+
+    &::after {
+      content: '✖';
+    }
+  }
+}
+
+// Helpers
+.margin-top-20{
+  margin-top: 20px;
+}
+.auto-width{
+  max-width: 100%;
+}
+.teal-color{
+  color: #009688;
 }
